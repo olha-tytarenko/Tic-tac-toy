@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Tic tac toe</title>
+  <script src="main.js"></script>
+  <link rel="stylesheet" href="reset.css">
+  <style>
+    body {
+      width: 100vw;
+      height: 100vh;
+      background-color: rgb(255, 236, 248);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tic-tac-toe {
+      width: 150px;
+    }
+
+    .tic-tac-toe-cell{
+      width: 50px;
+      height: 50px;
+      display: inline-block;
+      background-color: white;
+      border: 1px solid rgb(199, 190, 255);
+      padding: 0;
+      margin: 0;
+    }
+
+    .background-cell-tic{
+      background: url("tic.png") center center no-repeat;
+      background-size: contain;
+    }
+    .background-cell-tac{
+      background: url("tac.png") center center no-repeat;
+      background-size: contain;
+    }
+    .tic-tac-toe button{
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="tic-tac-toe">
+    <div class="tic-tac-toe-cell" id="1"></div><div class="tic-tac-toe-cell" id="2"></div><div class="tic-tac-toe-cell" id="3"></div>
+    <div class="tic-tac-toe-cell" id="4"></div><div class="tic-tac-toe-cell" id="5"></div><div class="tic-tac-toe-cell" id="6"></div>
+    <div class="tic-tac-toe-cell" id="7"></div><div class="tic-tac-toe-cell" id="8"></div><div class="tic-tac-toe-cell" id="9"></div>
+    <input type="checkbox" id="whoGoFirst">
+    <label for="whoGoFirst">I want to go first</label>
+    <button type="button" name="button" id="startGame">Start the game</button>
+    <button type="button" name="button" id="clear">Reset</button>
+  </div>
+</body>
+
+</html>
