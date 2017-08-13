@@ -9,7 +9,7 @@ window.addEventListener('load', () => {
       cells.push(i+1);
     }
     let computer;
-    let user;
+    let state;
 
     if(firstPlayer){
       user = 1;
@@ -31,7 +31,7 @@ window.addEventListener('load', () => {
         cells.splice(cells.indexOf(parseInt(userProgress)), 1);
 
               //find cell for computer
-              let cell = computerBrain(cellsState, user);
+              let cell = computerBrain(cellsState, user, computer);
 
               //checking if user winner
               let winner;
@@ -91,43 +91,53 @@ window.addEventListener('load', () => {
     return 'empty';
   }
 
-  function computerBrain(cellsState, user){
+  function computerBrain(cellsState, user, computer){
     let cell = 0;
-    if(cellsState[3] === '' && (((cellsState[0] === user) && (cellsState[6] === user)) ||
-    ((cellsState[4] === user) && (cellsState[5] === user)))){
-       cell = 4; //3
-    } else if (cellsState[4] === '' && (((cellsState[1] === user) && (cellsState[7] === user)) ||
-    ((cellsState[3] === user) && (cellsState[5] === user)) ||
-    ((cellsState[0] === user) && (cellsState[8] === user)) ||
-    ((cellsState[6] === user) && (cellsState[2] === user)))){
-      cell = 5; //4
-    } else if(cellsState[5] === '' && (((cellsState[2] === user) && (cellsState[8] === user)) ||
-     ((cellsState[3] === user) && (cellsState[4] === user)))){
-      cell = 6; //5
-    } else if (cellsState[7] === '' && (((cellsState[1] === user) && (cellsState[4] === user)) ||
-     ((cellsState[6] === user) && (cellsState[8] === user)))){
-      cell = 8; //7
-    } else if (cellsState[1] === '' && (((cellsState[4] === user) && (cellsState[7] === user)) ||
-     ((cellsState[0] === user) && (cellsState[2] === user)))){
-      cell = 2; //1
-    } else if (cellsState[2] === '' && (((cellsState[5] === user) && (cellsState[8] === user)) ||
-     ((cellsState[0] === user) && (cellsState[1] === user)) ||
-     ((cellsState[6] === user) && (cellsState[4] === user)))){
-      cell = 3; //2
-    }else if (cellsState[0] === '' && (((cellsState[3] === user) && (cellsState[6] === user)) ||
-     ((cellsState[1] === user) && (cellsState[2] === user)) ||
-     ((cellsState[4] === user) && (cellsState[8] === user)))){
-      cell = 1; //0
-    }else if (cellsState[8] === '' && (((cellsState[2] === user) && (cellsState[5] === user))  ||
-     ((cellsState[6] === user) && (cellsState[7] === user)) ||
-     ((cellsState[0] === user) && (cellsState[4] === user)))){
-      cell = 9; //8
-    }else if (cellsState[6] === '' && (((cellsState[0] === user) && (cellsState[3] === user)) ||
-    ((cellsState[7] === user) && (cellsState[8] === user)) ||
-    ((cellsState[2] === user) && (cellsState[4] === user)))){
-      cell = 7; //6
-    }
+    let state = computer;
+    for (let i = 0; i< 2; i++){
+      if(cellsState[3] === '' && (((cellsState[0] === state) && (cellsState[6] === state)) ||
+        ((cellsState[4] === state) && (cellsState[5] === state)))){
+           cell = 4; //3
+        } else if (cellsState[4] === '' && (((cellsState[1] === state) && (cellsState[7] === state)) ||
+        ((cellsState[3] === state) && (cellsState[5] === state)) ||
+        ((cellsState[0] === state) && (cellsState[8] === state)) ||
+        ((cellsState[6] === state) && (cellsState[2] === state)))){
+          cell = 5; //4
+        } else if(cellsState[5] === '' && (((cellsState[2] === state) && (cellsState[8] === state)) ||
+         ((cellsState[3] === state) && (cellsState[4] === state)))){
+          cell = 6; //5
+        } else if (cellsState[7] === '' && (((cellsState[1] === state) && (cellsState[4] === state)) ||
+         ((cellsState[6] === state) && (cellsState[8] === state)))){
+          cell = 8; //7
+        } else if (cellsState[1] === '' && (((cellsState[4] === state) && (cellsState[7] === state)) ||
+         ((cellsState[0] === state) && (cellsState[2] === state)))){
+          cell = 2; //1
+        } else if (cellsState[2] === '' && (((cellsState[5] === state) && (cellsState[8] === state)) ||
+         ((cellsState[0] === state) && (cellsState[1] === state)) ||
+         ((cellsState[6] === state) && (cellsState[4] === state)))){
+          cell = 3; //2
+        }else if (cellsState[0] === '' && (((cellsState[3] === state) && (cellsState[6] === state)) ||
+         ((cellsState[1] === state) && (cellsState[2] === state)) ||
+         ((cellsState[4] === state) && (cellsState[8] === state)))){
+          cell = 1; //0
+        }else if (cellsState[8] === '' && (((cellsState[2] === state) && (cellsState[5] === state))  ||
+         ((cellsState[6] === state) && (cellsState[7] === state)) ||
+         ((cellsState[0] === state) && (cellsState[4] === state)))){
+          cell = 9; //8
+        }else if (cellsState[6] === '' && (((cellsState[0] === state) && (cellsState[3] === state)) ||
+        ((cellsState[7] === state) && (cellsState[8] === state)) ||
+        ((cellsState[2] === state) && (cellsState[4] === state)))){
+          cell = 7; //6
+        }
 
+        if (cell === 0){
+          state = user;
+        } else{
+          return cell;
+        }
+    
+    }
+    
     return cell;
   }
 
